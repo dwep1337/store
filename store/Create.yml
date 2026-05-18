@@ -1,0 +1,23 @@
+info:
+  name: Create
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{url}}/products"
+  body:
+    type: json
+    data: |-
+      {
+          "name": "Shampoo",
+          "description": "Bom para cabelo seco",
+          "price": 20.00
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
