@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/products")
 @RequiredArgsConstructor
-public class ProductControler {
+public class ProductController {
 
     private final ProductService productService;
 

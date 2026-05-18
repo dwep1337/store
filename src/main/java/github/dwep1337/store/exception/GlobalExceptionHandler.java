@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -16,7 +17,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ValidationErrorResponse> handleValidation(MethodArgumentNotValidException ex) {
         Map<String, String> errors = ex.getBindingResult().getFieldErrors().stream()
             .collect(Collectors.toMap(
-                error -> error.getField(),
+                    FieldError::getField,
                 error -> error.getDefaultMessage() != null ? error.getDefaultMessage() : "Valor inválido",
                 (first, second) -> first));
 
